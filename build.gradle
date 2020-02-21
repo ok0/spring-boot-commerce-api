@@ -48,8 +48,10 @@ subprojects {
 
 }
 
-project(':data') {
+project(':domain-rds') {
     dependencies {
+        compile project(':util')
+
         compile('com.h2database:h2')
     }
 
@@ -59,6 +61,9 @@ project(':data') {
 }
 
 project(':util') {
+    dependencies {
+        implementation group: 'joda-time', name: 'joda-time', version: '2.10.5'
+    }
     jar {
         enabled = true
     }
@@ -66,7 +71,7 @@ project(':util') {
 
 project(':api') {
     dependencies {
-        compile project(':data')
+        compile project(':domain-rds')
         compile project(':util')
 
         implementation 'org.springframework.boot:spring-boot-starter-web'
